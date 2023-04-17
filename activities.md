@@ -337,6 +337,8 @@
                 card.classList.add("flip");
             }
         }
+        alert(timePast.toFixed(2));
+        alert(flips);
         refreshBtn.innerText = "Results"
         refreshBtn.setAttribute("onclick","showResults()")
         
