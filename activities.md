@@ -337,8 +337,8 @@
                 card.classList.add("flip");
             }
         }
-        alert(timePast.toFixed(2));
-        alert(flips);
+        timeTag.innerText = timePast.toFixed(2);
+        flipsTag.innerText = flips;
         refreshBtn.innerText = "Results"
         refreshBtn.setAttribute("onclick","showResults()")
         
@@ -351,8 +351,6 @@
             let card = cards[i];
             card.style.display="none";
         }
-        timeTag.innerText = timePast.toFixed(2);
-        flipsTag.innerText = flips;
         refreshBtn.innerText = "Retry"
         refreshBtn.setAttribute("onclick","shuffleCard()");
     }
