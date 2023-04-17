@@ -352,8 +352,8 @@
 
     function matchCards(img1, img2) {
         if(img1 === img2){
-          alert(img1.slice(44,-4));
-            if (bad.includes(img1.slice(44,-4))){
+          alert(img1.slice(42,-4));
+            if (bad.includes(img1.slice(42,-4))){
                 timePast+=5;
             } else {
                 matchedCard++;
