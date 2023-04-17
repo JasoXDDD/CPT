@@ -349,6 +349,8 @@
             let card = cards[i];
             card.style.display="none";
         }
+        let time = timePast;
+        let flip = flips;
     }
 
     function matchCards(img1, img2) {
