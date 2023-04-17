@@ -339,14 +339,9 @@
         }
         timeTag.innerText = timePast.toFixed(2);
         flipsTag.innerText = flips;
-        refreshBtn.innerText = "Results"
-        refreshBtn.setAttribute("onclick","showResults()")
-        
     }
 
     function showResults(){
-        alert(timePast.toFixed(2));
-        alert(flips);
         for (let i=0;i<cards.length;i++){
             let card = cards[i];
             card.style.display="none";
