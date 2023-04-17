@@ -1,97 +1,435 @@
-## Planned Activities
-> Group events will occur each afternoon.  These are intended to explore local area attractions and build family bonds.
+<head>
+    <meta charset="utf-8">
+    <title>Food Memory Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        p{
+            font-size: 20px;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #6563ff;
+        }
+        ::selection{
+            color: #fff;
+            background: #6563ff;
+        }
+        .wrapper{
+            padding: 25px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .cards, .card, .view, .details, p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cards{
+            height: 350px;
+            width: 350px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .cards .card{
+            cursor: pointer;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            height: calc(100% / 4 - 10px);
+            width: calc(100% / 4 - 10px);
+        }
+        .card.shake{
+            animation: shake 0.35s ease-in-out;
+        }
+            @keyframes shake {
+                0%, 100%{
+                    transform: translateX(0);
+                }
+                20%{
+                    transform: translateX(-13px);
+                }
+                40%{
+                    transform: translateX(13px);
+                }
+                60%{
+                    transform: translateX(-8px);
+                }
+                80%{
+                    transform: translateX(8px);
+                }
+            }
+        .cards .card .view{
+            width: 100%;
+            height: 100%;
+            user-select: none;
+            pointer-events: none;
+            position: absolute;
+            background: #fff;
+            border-radius: 7px;
+            backface-visibility: hidden;
+            transition: transform 0.25s linear;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .card .front-view img{
+            max-width: 17px;
+        }
+        .card .back-view{
+            transform: rotateY(-180deg);
+        }
+        .card .back-view img{
+            max-width: 40px;
+        }
+        .card.flip .front-view{
+            transform: rotateY(180deg);
+        }
+        .card.flip .back-view{
+            transform: rotateY(0);
+        }
+        .details{
+            width: 100%;
+            margin-top: 15px;
+            padding: 0 20px;
+            border-radius: 7px;
+            background: #fff;
+            height: calc(100% / 4 - 30px);
+            justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .details p{
+            font-size: 18px;
+            height: 17px;
+            padding-right: 18px;
+            border-right: 1px solid #ccc;
+        }
+        .details p span{
+            margin-left: 8px;
+        }
+        .details p b{
+            font-weight: 500;
+        }
+        .details button{
+            cursor: pointer;
+            font-size: 14px;
+            color: #6563ff;
+            border-radius: 4px;
+            padding: 4px 11px;
+            background: #fff;
+            border: 2px solid #6563ff;
+            transition: 0.3s ease;
+        }
+        .details button:hover{
+            color: #fff;
+            background: #6563ff;
+        }
+        @media screen and (max-width: 700px) {
+            .cards{
+                height: 350px;
+                width: 350px;
+            }
+            .card .front-view img{
+                max-width: 16px;
+            }
+            .card .back-view img{
+                max-width: 40px;
+            }
+        }
+        @media screen and (max-width: 530px) {
+            .cards{
+                height: 300px;
+                width: 300px;
+            }
+            .card .back-view img{
+                max-width: 35px;
+            }
+            .details{
+                margin-top: 10px;
+                padding: 0 15px;
+                height: calc(100% / 4 - 20px);
+            }
+            .details p{
+                height: 15px;
+                font-size: 17px;
+                padding-right: 13px;
+            }
+            .details button{
+                font-size: 13px;
+                padding: 5px 10px;
+                border: none;
+                color: #fff;
+                background: #6563ff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="cards">
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-1.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-2.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-3.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-4.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-5.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-6.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-5.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-6.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-1.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-2.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-3.png" alt="card-img">
+            </div>
+        </li>
+        <li class="card">
+            <div class="view front-view">
+            <img src="images/que_icon.svg" alt="icon">
+            </div>
+            <div class="view back-view">
+            <img src="images/img-4.png" alt="card-img">
+            </div>
+        </li>
+        <div class="details">
+            <p class="time">Time: <span><b>20</b>s</span></p>
+            <p class="flips">Flips: <span><b>0</b></span></p>
+            <button>Refresh</button>
+        </div>
+        </ul>
+    </div>
+</body>
 
-### Tuesday Morning
-> Greet Games by Johnner and family.  Volleyball, Basketball, and Swimming have been generational sports for the Leuck's.  Early Leuck outings were to Tyler Texas and swimming was an all afternoon event.  At one time, almost all the Leuck's were in Eugene Oregon and many holidays were spent at the Danebo Church playing ball. Later their were reunions at Silver Creek Falls, Mexico, and Wenatchee. So in Leuck tradition, the morning will start with sports and of course socializing.  The theme of the 1st sports activity day will be: play, socialize, eat, rinse, and repeat.
-- The facility has a field and Volleyball net
-- Half-Court basketball
-- Bocce Ball
-- Pool
+<script>
+    const cards = document.querySelectorAll(".card"),
+    timeTag = document.querySelector(".time b"),
+    flipsTag = document.querySelector(".flips b"),
+    refreshBtn = document.querySelector(".details button");
 
-<div class="row"> <!--- make a new row -->
-  <!-- each column is one-third of width -->
-  <div class="column">
-    <img src="/images/coram-ranch-field.webp" alt="Field" style="width:100%">
-  </div>
-   <div class="column">
-    <img src="/images/coram-ranch-bocce.webp" alt="Bocce" style="width:100%">
-  </div>
-   <div class="column">
-    <img src="/images/coram-ranch-pool.webp" alt="Pool" style="width:100%">
-  </div>
-</div>
+    let timePast = 0;
+    let flips = 0;
+    let matchedCard = 0;
+    let disableDeck = false;
+    let isPlaying = false;
+    let cardOne, cardTwo, timer;
+    let good = [
+        "almond", "apple", "avocado", "banana", "beans", "blueberry",
+        "broccoli", "brusprouts", "carrot", "celery", "chickbreast", "cucumber",
+        "eggs", "kiwi", "lettuce", "mushroom", "orange", "salmon",
+        "spinach", "strawberry", "thethingyourdadlefttoget", "tomato", "walnut", "wholegrainbread"
+    ];
+    let bad = [
+        "bacon","burger", "chicknug", "chips", "donut", "fries",
+        "hotdog", "icecream", "pizza", "popcorn", "soda", "whitebread"
+    ];
 
-### Tuesday Afternoon (Johnner)
-> Hike, Bike and Fish.   There are 11 miles of trails and water around campus.   We will go on an adventure and explore the surroundings toward the Dam.
+    function initTimer(){
+        timePast+=0.01;
+        timeTag.innerText = timePast.toFixed(2);
+    }
 
-- Arial photos of Camp and Nearby [Shasta Dam](https://en.wikipedia.org/wiki/Shasta_Dam)
+    function flipCard({target: clickedCard}){
+        if(!isPlaying) {
+            isPlaying = true;
+            timer = setInterval(initTimer, 10);
+        }
+        if(clickedCard !== cardOne && !disableDeck){
+            flips++;
+            flipsTag.innerText = flips;
+            clickedCard.classList.add("flip");
+            if(!cardOne) {
+                return cardOne = clickedCard;
+            }
+            cardTwo = clickedCard;
+            disableDeck = true;
+            let cardOneImg = cardOne.querySelector(".back-view img").src,
+            cardTwoImg = cardTwo.querySelector(".back-view img").src;
+            matchCards(cardOneImg, cardTwoImg);
+        }
+    }
 
-<div class="row"> <!--- make a new row -->
-  <!-- each column is one-third of width -->
-  <div class="column">
-    <img src="/images/coram-ranch-arial.png" alt="site" style="width:100%">
-  </div>
-   <div class="column">
-    <img src="/images/coram-ranch-dam.png" alt="trail" style="width:100%">
-  </div>
-   <div class="column">
-  </div>
-</div>
+    function endGame(){
+        let time = timePast;
+        let flip = flips;
+        clearInterval(timer);
+        for (let i=0;i<cards.length;i++){
+            let card = cards[i];
+            if (!(card.classList.contains("flip"))){
+                card.classList.add("flip");
+            }
+        }
+        refreshBtn.innerText = "Results"
+        refreshBtn.setAttribute("onclick","showResults()")
+        
+    }
 
-### Wednesday Morning (Annalyce and Peyton)
-> Pool Olympics.  Curious feedback ... Hey, we’ve decided we are including a polar plunge. Please be prepared to provide the cash. 😂👍🏽
+    function showResults(){
+        for (let i=0;i<cards.length;i++){
+            let card = cards[i];
+            card.style.display="none";
+        }
+        let time = timePast;
+        let flips = flips;
+        let data = {name:"jaso", time:time, flips:flips};
+        console.log(JSON.stringify(data))
+        fetch('https://fruitteam.duckdns.org/api/match/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)  
+            })
+            .then(res => {
+                console.log(res);
+                timeTag.innerText=time;
+                flipsTag.innerText=flips;
+                refreshBtn.innerText = "Retry"
+                refreshBtn.setAttribute("onclick","shufflecard()")
+            })
+    }
 
-### Wednesday Afternoon (John and Lora)
-> Spelunking.  The Mortensen's frequent through the California corridor.  On each pass we have been wanting to visit the [Lake Shasta Caverns](https://lakeshastacaverns.clickforward.com/).   This is highly recommended by all locals and the trip include bus, boat ride, and cave adventure.   
-- Pack up lunch and leave by about 12:45pm
-- 32 minute drive to the event
-- 45 minute pre-checking required, we can Picnic while we wait
-- Fees $37 adult, $23 7-15, $13 3-6, under 2 yrs free, 20 people required for this rate
-- 600 stairs in cavern and 1 hour hike, there are options for bus/boat only and a half-way turnout in cave
-- 2 hours of bus, boat and hike
-- Options for Gem Stone mining on site
+    function matchCards(img1, img2) {
+        if(img1 === img2){
+            if (bad.includes(img1.slice(44,-4))){
+                timePast+=5;
+            } else {
+                matchedCard++;
+                if(matchedCard == 4){
+                    return endGame();
+                }
+            }
+            cardOne.removeEventListener("click", flipCard);
+            cardTwo.removeEventListener("click", flipCard);
+            cardOne = cardTwo = "";
+            return disableDeck = false;
+        }
+        setTimeout(() => {
+            cardOne.classList.add("shake");
+            cardTwo.classList.add("shake");
+        }, 0);
+        setTimeout(() => {
+            cardOne.classList.remove("shake", "flip");
+            //cardTwo.classList.remove("shake", "flip");
+            cardOne = cardTwo;
+            cardTwo = "";
+            disableDeck = false;
+        }, 200);
+    }
 
-<div class="row"> <!--- make a new row -->
-  <!-- each column is one-third of width -->
-  <div class="column">
-    <img src="/images/Shasta_Caverns1.jpg" alt="cavern1" style="width:100%">
-  </div>
-   <div class="column">
-    <img src="/images/Shasta_Caverns2.jpeg" alt="cavern1" style="width:100%">
-  </div>
-   <div class="column">
-    <img src="/images/Shasta_Caverns3.jpeg" alt="cavern1" style="width:100%">
-  </div>
-</div>
+    function shuffleCard() {
+        for (let i=0;i<cards.length;i++){
+            let card = cards[i];
+            card.style.display="inline";
+        }
+        timePast = 0;
+        flips = matchedCard = 0;
+        cardOne = cardTwo = "";
+        clearInterval(timer);
+        timeTag.innerText = timePast.toFixed(2);
+        flipsTag.innerText = flips;
+        disableDeck = isPlaying = false;
+        good.sort(() => Math.random() > 0.5 ? 1 : -1);
+        bad.sort(() => Math.random() > 0.5 ? 1 : -1);
+        let arr = good.slice(0,4).concat(bad.slice(0,2));
+        arr = arr.concat(arr);
+        arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+        cards.forEach((card, index) => {
+            card.classList.remove("flip");
+            let imgTag = card.querySelector(".back-view img");
+            //alert(arr[index]);
+            setTimeout(() => {
+                imgTag.src = `images/img-${arr[index]}.png`;
+            }, 500);
+            card.addEventListener("click", flipCard);
+        });
+    }
 
-### Thursday Boating in Shifts (Jared)
-> Boating at the Lake.  In the Eugene days the family had several boating trips at the surrounding lakes.  UJ (Frank's brother) was the center of many of these trips.  Picking up for UJ, Jared is coordinating a boating adventure ...
+    shuffleCard();
 
-This is a water sport boat.  It has a high performance boat (v8 power) with wakeboard tower that can pull a large wakeboarder, skier, tuber, and is even equipped for wake-surfing.  Jared has a ski/wakeboard rented for all day Thursday 6/29.  
+    refreshBtn.addEventListener("click", shuffleCard);
 
-OG families are asked to contribute $135.  This cost can be distributed to those who plan to participate.  We will need to obtain a head count for each of the four sessions.  We want to limit trip to 8 people at a time.
-
-Group #1:
-Group #2:
-Group #3:
-Group #4:
-
-
-- [Bridge Bay at Shasta Lake](https://bridgebayhouseboats.com/small-boat-rental/ski-boat/)
-
-### Friday Morning
-
-### Friday Morning (Taylor, Jake)
-> Field Olympics.  Early feedback ... Definitely wiffle ball/softball and volleyball!!!
-
-### Friday Afternoon
-> Adventure coordinated individually or by clan.   Crossover with a family or split up in any combination you like, aka Alaska Cruise style.  There are many activities in Shasta Lakes or nearby Redding.  Here are some that are recommended.  Be back for Dinner and the final Family Night.
-
-- [Best Shasta Lakes Trails](https://www.alltrails.com/us/california/shasta-lake)
-- [Burney Falls](https://www.visitcalifornia.com/experience/burney-falls/)
-- [Lassen Volcanic National Park](https://www.nps.gov/lavo/index.htm)
-- [Gold Hills Golfing](https://www.goldhillsgolf.com/)
-- [Turtle Bay Museum](https://www.turtlebay.org/)
-- [Sundial Bridge](https://www.turtlebay.org/sundial-bridge)
-- [Cascade Theater](https://cascadetheatre.org/)
-- [Waterworks Park](https://www.waterworkspark.com/)
+    cards.forEach(card => {
+        card.addEventListener("click", flipCard);
+    });
+</script>
