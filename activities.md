@@ -351,6 +351,7 @@
         }
         let time = timePast;
         let flip = flips;
+        refreshBtn.setAttribute("onclick","shuffleCard()");
     }
 
     function matchCards(img1, img2) {
