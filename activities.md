@@ -330,8 +330,6 @@
     }
 
     function endGame(){
-        let time = timePast;
-        let flip = flips;
         clearInterval(timer);
         for (let i=0;i<cards.length;i++){
             let card = cards[i];
@@ -349,8 +347,9 @@
             let card = cards[i];
             card.style.display="none";
         }
-        let time = timePast;
-        let flip = flips;
+        timeTag.innerText = timePast.toFixed(2);
+        flipsTag.innerText = flips;
+        refreshBtn.innerText = "Retry"
         refreshBtn.setAttribute("onclick","shuffleCard()");
     }
 
