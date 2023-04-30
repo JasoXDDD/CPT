@@ -302,7 +302,7 @@
 
     function timing(){
         time+=0.01;
-        timeLabel.innerText = timePast.toFixed(2);
+        timeLabel.innerText = time.toFixed(2);
     }
 
     function flip({target:clicked}){
@@ -417,7 +417,7 @@
         for (let i=0;i<cardSet.length;i++){
             cardList[i].classList.remove("flipped");
             setTimeout(() => {
-                cardList[i].querySelector(".back-view img").src = `images/img-${cardSet[index]}.png`;
+                cardList[i].querySelector(".back-view img").src = `images/img-${cardSet[i]}.png`;
             }, 500);
             cardList[i].addEventListener("click", flip);
         }
