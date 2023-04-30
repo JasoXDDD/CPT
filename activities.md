@@ -342,23 +342,10 @@
             let card = cardList[i];
             card.style.display="none";
         }
-        let time = timePast;
-        let flips = flips;
-        let data = {name:"jaso", time:time, flips:flips};
-        console.log(JSON.stringify(data))
-        fetch('https://fruitteam.duckdns.org/api/match/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)  
-            })
-            .then(res => {
-                console.log(res);
-                timeTag.innerText=time;
-                refreshBtn.innerText = "Retry"
-                refreshBtn.setAttribute("onclick","shufflecard()")
-            })
+        let finalTime = time;
+        timeLabel.innerText = finalTime.toFixed(2);
+        retryButton.innerText = "Retry"
+        retryButton.addEventListener("click", setup);
     }
 
     function check(img1, img2) {
