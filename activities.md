@@ -334,6 +334,9 @@
             let card = cardList[i];
             if (!(card.classList.contains("flipped"))){
                 card.classList.add("flipped");
+                setTimeout(() => {
+                    card.classList.add("badColor");
+                }, 200);
             }
         }
     }
@@ -349,12 +352,16 @@
                 }
             }
             if (isBad){
-                cardA.classList.add("badColor");
-                cardB.classList.add("badColor");
+                setTimeout(() => {
+                    cardA.classList.add("badColor");
+                    cardB.classList.add("badColor");
+                }, 200);
                 time+=5;
             } else {
-                cardA.classList.add("goodColor");
-                cardB.classList.add("goodColor");
+                setTimeout(() => {
+                    cardA.classList.add("goodColor");
+                    cardB.classList.add("goodColor");
+                }, 200);
                 counter++;
                 if(counter == 4){
                     end();
