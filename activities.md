@@ -97,7 +97,7 @@
             transform: rotateY(0);
         }
         .card.badColor{
-            background: #ffcbd1;
+            color: #ffcbd1;
         }
         .card.goodColor{
             background: #cdffd1;
