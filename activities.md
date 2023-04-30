@@ -2,7 +2,6 @@
     <meta charset="utf-8">
     <title>Food Memory Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         *{
@@ -91,10 +90,10 @@
         .card .back-view img{
             max-width: 40px;
         }
-        .card.flip .front-view{
+        .card.flipped .front-view{
             transform: rotateY(180deg);
         }
-        .card.flip .back-view{
+        .card.flipped .back-view{
             transform: rotateY(0);
         }
         .details{
@@ -273,26 +272,23 @@
             </div>
         </li>
         <div class="details">
-            <p class="time">Time: <span><b>20</b>s</span></p>
-            <p class="flips">Flips: <span><b>0</b></span></p>
-            <button>Refresh</button>
+            <p class="time">Time: <span><b>0.00</b>s</span></p>
+            <button>Retry</button>
         </div>
         </ul>
     </div>
 </body>
 
 <script>
-    const cards = document.querySelectorAll(".card"),
-    timeTag = document.querySelector(".time b"),
-    flipsTag = document.querySelector(".flips b"),
-    refreshBtn = document.querySelector(".details button");
+    const cardList = document.querySelectorAll(".card");
+    const timeLabel = document.querySelector(".time b");
+    const retryButton = document.querySelector(".details button");
 
-    let timePast = 0;
-    let flips = 0;
-    let matchedCard = 0;
-    let disableDeck = false;
-    let isPlaying = false;
-    let cardOne, cardTwo, timer;
+    let time = 0;
+    let counter = 0;
+    let paused = false;
+    let started = false;
+    let card1, card2, timer;
     let good = [
         "almond", "apple", "avocado", "banana", "beans", "blueberry",
         "broccoli", "brusprouts", "carrot", "celery", "chickbreast", "cucumber",
@@ -304,113 +300,131 @@
         "hotdog", "icecream", "pizza", "popcorn", "soda", "whitebread"
     ];
 
-    function initTimer(){
+    function timing(){
         timePast+=0.01;
-        timeTag.innerText = timePast.toFixed(2);
+        timeLabel.innerText = timePast.toFixed(2);
     }
 
-    function flipCard({target: clickedCard}){
-        if(!isPlaying) {
-            isPlaying = true;
-            timer = setInterval(initTimer, 10);
+    function flip({target:clicked}){
+        if(!started){
+            started = true;
+            timer=setInterval(timing, 10);
         }
-        if(clickedCard !== cardOne && !disableDeck){
-            flips++;
-            flipsTag.innerText = flips;
-            clickedCard.classList.add("flip");
-            if(!cardOne) {
-                return cardOne = clickedCard;
+        if(clicked != card1 && !paused){
+            clicked.classList.add("flipped");
+            if(card1 == "") {
+                card1 = clicked;
+            } else {
+                cardTwo = clicked;
+                disableDeck = true;
+                let img1 = cardOne.querySelector(".back-view img").src;
+                let img2 = cardTwo.querySelector(".back-view img").src;
+                match(img1, img2);
             }
-            cardTwo = clickedCard;
-            disableDeck = true;
-            let cardOneImg = cardOne.querySelector(".back-view img").src,
-            cardTwoImg = cardTwo.querySelector(".back-view img").src;
-            matchCards(cardOneImg, cardTwoImg);
         }
     }
 
-    function endGame(){
+    function end(){
         clearInterval(timer);
-        for (let i=0;i<cards.length;i++){
-            let card = cards[i];
-            if (!(card.classList.contains("flip"))){
-                card.classList.add("flip");
+        for (let i=0;i<cardList.length;i++){
+            let card = cardList[i];
+            if (!(card.classList.contains("flipped"))){
+                card.classList.add("flipped");
             }
         }
-        timeTag.innerText = timePast.toFixed(2);
-        flipsTag.innerText = flips;
+        retryButton.innerText = "Results"
+        retryButton.addEventListener("click", results);
+        
     }
 
-    function showResults(){
-        for (let i=0;i<cards.length;i++){
-            let card = cards[i];
+    function results(){
+        for (let i=0;i<cardList.length;i++){
+            let card = cardList[i];
             card.style.display="none";
         }
-        refreshBtn.innerText = "Retry"
-        refreshBtn.setAttribute("onclick","shuffleCard()");
+        let time = timePast;
+        let flips = flips;
+        let data = {name:"jaso", time:time, flips:flips};
+        console.log(JSON.stringify(data))
+        fetch('https://fruitteam.duckdns.org/api/match/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)  
+            })
+            .then(res => {
+                console.log(res);
+                timeTag.innerText=time;
+                refreshBtn.innerText = "Retry"
+                refreshBtn.setAttribute("onclick","shufflecard()")
+            })
     }
 
-    function matchCards(img1, img2) {
-        if(img1 === img2){
-            if (bad.includes(img1.slice(42,-4))){
-                timePast+=5;
-            } else {
-                matchedCard++;
-                if(matchedCard == 4){
-                    return endGame();
+    function check(img1, img2) {
+        if(img1 == img2){
+            isBad=false;
+            for (let i=0;i<bad.length;i++){
+                if (bad[i]==img1.slice(44,-4)){
+                    isBad=true;
                 }
             }
-            cardOne.removeEventListener("click", flipCard);
-            cardTwo.removeEventListener("click", flipCard);
-            cardOne = cardTwo = "";
-            return disableDeck = false;
+            if (isBad){
+                time+=5;
+            } else {
+                counter++;
+                if(counter == 4){
+                    end();
+                    return;
+                }
+            }
+            card1.removeEventListener("click", flip);
+            card2.removeEventListener("click", flip);
+            card1 = card2 = "";
+            paused = false;
+            return;
         }
         setTimeout(() => {
-            cardOne.classList.add("shake");
-            cardTwo.classList.add("shake");
+            card1.classList.add("shake");
+            card2.classList.add("shake");
         }, 0);
         setTimeout(() => {
-            cardOne.classList.remove("shake", "flip");
-            //cardTwo.classList.remove("shake", "flip");
-            cardOne = cardTwo;
-            cardTwo = "";
-            disableDeck = false;
+            card1.classList.remove("shake", "flipped");
+            card2.classList.remove("shake");
+            card1 = card2;
+            card2 = "";
+            paused = false;
         }, 200);
     }
 
-    function shuffleCard() {
-        for (let i=0;i<cards.length;i++){
-            let card = cards[i];
+    function setup(){
+        alert("setup");
+        for (let i=0;i<cardList.length;i++){
+            let card = cardList[i];
             card.style.display="inline";
         }
-        timePast = 0;
-        flips = matchedCard = 0;
-        cardOne = cardTwo = "";
+        time = 0;
+        card1 = card2 = "";
         clearInterval(timer);
-        timeTag.innerText = timePast.toFixed(2);
-        flipsTag.innerText = flips;
-        disableDeck = isPlaying = false;
-        good.sort(() => Math.random() > 0.5 ? 1 : -1);
-        bad.sort(() => Math.random() > 0.5 ? 1 : -1);
-        let arr = good.slice(0,4).concat(bad.slice(0,2));
-        arr = arr.concat(arr);
-        arr.sort(() => Math.random() > 0.5 ? 1 : -1);
-        cards.forEach((card, index) => {
-            card.classList.remove("flip");
-            let imgTag = card.querySelector(".back-view img");
-            //alert(arr[index]);
+        timeLabel.innerText = time.toFixed(2);
+        paused = false;
+
+        good.sort((a, b) => 0.5 - Math.random());
+        bad.sort((a, b) => 0.5 - Math.random());
+        let cardSet = good.slice(0,4).concat(bad.slice(0,2));
+        cardSet = cardSet.concat(cardSet);
+        cardSet.sort((a, b) => 0.5 - Math.random());
+        for (let i=0;i<cardSet.length;i++){
+            cardList[i].classList.remove("flipped");
             setTimeout(() => {
-                imgTag.src = `images/img-${arr[index]}.png`;
+                cardList[i].querySelector(".back-view img").src = `images/img-${arr[index]}.png`;
             }, 500);
-            card.addEventListener("click", flipCard);
-        });
+            cardList[i].addEventListener("click", flip);
+        }
     }
+    alert("setup");
 
-    shuffleCard();
+    setup();
 
-    refreshBtn.addEventListener("click", shuffleCard);
-
-    cards.forEach(card => {
-        card.addEventListener("click", flipCard);
-    });
+    retryButton.addEventListener("click", setup);
 </script>
