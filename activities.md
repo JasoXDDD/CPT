@@ -96,8 +96,8 @@
         .card.flipped .back-view{
             transform: rotateY(0);
         }
-        .card.badColor{
-            color: #ffcbd1;
+        .card.badColor .back-view{ 
+            background: #ffcbd1;
         }
         .card.goodColor{
             background: #cdffd1;
