@@ -96,6 +96,12 @@
         .card.flipped .back-view{
             transform: rotateY(0);
         }
+        .card.badColor{
+            background: #ffcbd1;
+        }
+        .card.goodColor{
+            background: #cdffd1;
+        }
         .details{
             width: 100%;
             margin-top: 15px;
@@ -317,9 +323,7 @@
             } else {
                 card2 = clicked;
                 paused = true;
-                let img1 = card1.querySelector(".back-view img").src;
-                let img2 = card2.querySelector(".back-view img").src;
-                check(img1, img2);
+                check(card1, card2);
             }
         }
     }
@@ -334,7 +338,9 @@
         }
     }
 
-    function check(img1, img2) {
+    function check(cardA, cardB) {
+        let img1 = card1.querySelector(".back-view img").src;
+        let img2 = card2.querySelector(".back-view img").src;
         if(img1 == img2){
             isBad=false;
             for (let i=0;i<bad.length;i++){
@@ -343,6 +349,7 @@
                 }
             }
             if (isBad){
+                cardA.classList.add("badColor");
                 time+=5;
             } else {
                 counter++;
