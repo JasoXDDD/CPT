@@ -315,7 +315,7 @@
             if(card1 == "") {
                 card1 = clicked;
             } else {
-                cardTwo = clicked;
+                card2 = clicked;
                 paused = true;
                 let img1 = card1.querySelector(".back-view img").src;
                 let img2 = card2.querySelector(".back-view img").src;
