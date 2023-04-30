@@ -332,20 +332,6 @@
                 card.classList.add("flipped");
             }
         }
-        retryButton.innerText = "Results"
-        retryButton.setAttribute("onClick", "results()");
-        
-    }
-
-    function results(){
-        for (let i=0;i<cardList.length;i++){
-            let card = cardList[i];
-            card.style.display="none";
-        }
-        let finalTime = time;
-        timeLabel.innerText = finalTime.toFixed(2);
-        retryButton.innerText = "Retry"
-        retryButton.setAttribute("onClick", "setup()");
     }
 
     function check(img1, img2) {
