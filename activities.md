@@ -316,7 +316,7 @@
                 card1 = clicked;
             } else {
                 cardTwo = clicked;
-                disableDeck = true;
+                paused = true;
                 let img1 = card1.querySelector(".back-view img").src;
                 let img2 = card2.querySelector(".back-view img").src;
                 check(img1, img2);
