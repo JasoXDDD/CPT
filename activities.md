@@ -319,7 +319,7 @@
                 disableDeck = true;
                 let img1 = card1.querySelector(".back-view img").src;
                 let img2 = card2.querySelector(".back-view img").src;
-                match(img1, img2);
+                check(img1, img2);
             }
         }
     }
