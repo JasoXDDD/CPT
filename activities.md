@@ -99,7 +99,7 @@
         .card.badColor .back-view{ 
             background: #ffcbd1;
         }
-        .card.goodColor{
+        .card.goodColor .back-view{
             background: #cdffd1;
         }
         .details{
@@ -350,8 +350,11 @@
             }
             if (isBad){
                 cardA.classList.add("badColor");
+                cardB.classList.add("badColor");
                 time+=5;
             } else {
+                cardA.classList.add("goodColor");
+                cardB.classList.add("goodColor");
                 counter++;
                 if(counter == 4){
                     end();
@@ -397,6 +400,8 @@
         cardSet.sort((a, b) => 0.5 - Math.random());
         for (let i=0;i<cardSet.length;i++){
             cardList[i].classList.remove("flipped");
+            cardList[i].classList.remove("goodColor");
+            cardList[i].classList.remove("badColor");
             setTimeout(() => {
                 cardList[i].querySelector(".back-view img").src = `images/img-${cardSet[i]}.png`;
             }, 500);
