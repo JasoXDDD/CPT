@@ -399,7 +399,6 @@
     }
 
     function setup(){
-        alert("setup");
         for (let i=0;i<cardList.length;i++){
             let card = cardList[i];
             card.style.display="inline";
@@ -423,7 +422,6 @@
             cardList[i].addEventListener("click", flip);
         }
     }
-    alert("setup");
 
     setup();
 
