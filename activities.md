@@ -301,7 +301,7 @@
     ];
 
     function timing(){
-        timePast+=0.01;
+        time+=0.01;
         timeLabel.innerText = timePast.toFixed(2);
     }
 
@@ -317,8 +317,8 @@
             } else {
                 cardTwo = clicked;
                 disableDeck = true;
-                let img1 = cardOne.querySelector(".back-view img").src;
-                let img2 = cardTwo.querySelector(".back-view img").src;
+                let img1 = card1.querySelector(".back-view img").src;
+                let img2 = card2.querySelector(".back-view img").src;
                 match(img1, img2);
             }
         }
@@ -417,7 +417,7 @@
         for (let i=0;i<cardSet.length;i++){
             cardList[i].classList.remove("flipped");
             setTimeout(() => {
-                cardList[i].querySelector(".back-view img").src = `images/img-${arr[index]}.png`;
+                cardList[i].querySelector(".back-view img").src = `images/img-${cardSet[index]}.png`;
             }, 500);
             cardList[i].addEventListener("click", flip);
         }
