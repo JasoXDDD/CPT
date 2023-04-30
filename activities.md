@@ -362,11 +362,11 @@
     }
 
     function check(img1, img2) {
-        alert(img1.slice(44,-4));
+        alert(img1.slice(42,-4));
         if(img1 == img2){
             isBad=false;
             for (let i=0;i<bad.length;i++){
-                if (bad[i]==img1.slice(44,-4)){
+                if (bad[i]==img1.slice(42,-4)){
                     isBad=true;
                 }
             }
