@@ -333,7 +333,7 @@
             }
         }
         retryButton.innerText = "Results"
-        retryButton.addEventListener("click", results);
+        retryButton.setAttribute("onClick", "results()");
         
     }
 
@@ -345,7 +345,7 @@
         let finalTime = time;
         timeLabel.innerText = finalTime.toFixed(2);
         retryButton.innerText = "Retry"
-        retryButton.addEventListener("click", setup);
+        retryButton.setAttribute("onClick", "setup()");
     }
 
     function check(img1, img2) {
