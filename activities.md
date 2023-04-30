@@ -390,6 +390,7 @@
             card.style.display="inline";
         }
         time = 0;
+        counter = 0;
         card1 = card2 = "";
         clearInterval(timer);
         timeLabel.innerText = time.toFixed(2);
