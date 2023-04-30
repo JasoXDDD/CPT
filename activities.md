@@ -362,7 +362,6 @@
     }
 
     function check(img1, img2) {
-        alert(img1.slice(42,-4));
         if(img1 == img2){
             isBad=false;
             for (let i=0;i<bad.length;i++){
@@ -408,6 +407,7 @@
         clearInterval(timer);
         timeLabel.innerText = time.toFixed(2);
         paused = false;
+        started = false;
 
         good.sort((a, b) => 0.5 - Math.random());
         bad.sort((a, b) => 0.5 - Math.random());
