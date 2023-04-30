@@ -117,6 +117,7 @@
             height: 17px;
             padding-right: 18px;
             border-right: 1px solid #ccc;
+            color: #000;
         }
         .details p span{
             margin-left: 8px;
