@@ -369,9 +369,9 @@
                     return;
                 }
             }
+            card1.removeEventListener("click", flip);
+            card2.removeEventListener("click", flip);
             setTimeout(() => {
-                card1.removeEventListener("click", flip);
-                card2.removeEventListener("click", flip);
                 card1 = card2 = "";
                 paused = false;
             }, 200);
