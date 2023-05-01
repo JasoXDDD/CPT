@@ -324,8 +324,8 @@
             } else {
                 card2 = clicked;
                 paused = true;
-                let img1 = cardA.querySelector(".back-view img").src;
-                let img2 = cardB.querySelector(".back-view img").src;
+                let img1 = card1.querySelector(".back-view img").src;
+                let img2 = card2.querySelector(".back-view img").src;
                 check(img1, img2);
             }
         }
