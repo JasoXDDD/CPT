@@ -324,12 +324,14 @@
             } else {
                 card2 = clicked;
                 paused = true;
-                check(card1, card2);
+                let img1 = cardA.querySelector(".back-view img").src;
+                let img2 = cardB.querySelector(".back-view img").src;
+                check(img1, img2);
             }
         }
     }
 
-    function end(){
+    function endGame(){
         clearInterval(timer);
         for (let i=0;i<cardList.length;i++){
             let card = cardList[i];
@@ -342,30 +344,28 @@
         }
     }
 
-    function check(cardA, cardB) {
-        let img1 = card1.querySelector(".back-view img").src;
-        let img2 = card2.querySelector(".back-view img").src;
-        if(img1 == img2){
+    function check(imgA, imgB) {
+        if(imgA == imgB){
             isBad=false;
             for (let i=0;i<bad.length;i++){
-                if (bad[i]==img1.slice(42,-4)){
+                if (bad[i]==imgA.slice(42,-4)){
                     isBad=true;
                 }
             }
             if (isBad){
                 setTimeout(() => {
-                    cardA.classList.add("badColor");
-                    cardB.classList.add("badColor");
+                    card1.classList.add("badColor");
+                    card2.classList.add("badColor");
                 }, 200);
                 time+=5;
             } else {
                 setTimeout(() => {
-                    cardA.classList.add("goodColor");
-                    cardB.classList.add("goodColor");
+                    card1.classList.add("goodColor");
+                    card2.classList.add("goodColor");
                 }, 200);
                 counter++;
                 if(counter == 4){
-                    end();
+                    endGame();
                     return;
                 }
             }
@@ -375,10 +375,8 @@
             paused = false;
             return;
         }
-        setTimeout(() => {
-            card1.classList.add("shake");
-            card2.classList.add("shake");
-        }, 0);
+        card1.classList.add("shake");
+        card2.classList.add("shake");
         setTimeout(() => {
             card1.classList.remove("shake", "flipped");
             card2.classList.remove("shake");
