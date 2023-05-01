@@ -374,8 +374,8 @@
                 card2.removeEventListener("click", flip);
                 card1 = card2 = "";
                 paused = false;
-                return;
             }, 200);
+            return;
         }
         card1.classList.add("shake");
         card2.classList.add("shake");
