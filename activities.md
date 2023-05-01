@@ -369,11 +369,13 @@
                     return;
                 }
             }
-            card1.removeEventListener("click", flip);
-            card2.removeEventListener("click", flip);
-            card1 = card2 = "";
-            paused = false;
-            return;
+            setTimeout(() => {
+                card1.removeEventListener("click", flip);
+                card2.removeEventListener("click", flip);
+                card1 = card2 = "";
+                paused = false;
+                return;
+            }, 200);
         }
         card1.classList.add("shake");
         card2.classList.add("shake");
