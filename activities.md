@@ -141,8 +141,8 @@
         }
         @media screen and (max-width: 700px) {
             .tiles{
-                width: 350px;
                 height: 350px;
+                width: 350px;
             }
             .tile .front-view img{
                 max-width: 16px;
@@ -153,28 +153,28 @@
         }
         @media screen and (max-width: 530px) {
             .tile{
-                width: 300px;
                 height: 300px;
+                width: 300px;
             }
             .tile .back-view img{
                 max-width: 35px;
             }
             .details{
-                padding: 0 15px;
                 margin-top: 10px;
+                padding: 0 15px;
                 height: calc(100% / 4 - 20px);
             }
             .details p{
                 height: 15px;
-                padding-right: 13px;
                 font-size: 17px;
+                padding-right: 13px;
             }
             .details button{
                 font-size: 13px;
-                border: none;
                 padding: 5px 10px;
-                background: #6563ff;
+                border: none;
                 color: #fff;
+                background: #6563ff;
             }
         }
     </style>
