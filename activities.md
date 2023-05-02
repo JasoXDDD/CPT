@@ -167,7 +167,7 @@
             .details p{
                 height: 15px;
                 font-size: 17px;
-                padding-right: 13px;
+                padding-right: 5px;
             }
             .details button{
                 font-size: 13px;
