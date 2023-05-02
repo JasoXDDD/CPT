@@ -30,18 +30,18 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .cards, .card, .view, .details, p{
+        .tiles, .tile, .view, .details, p{
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .cards{
+        .tiles{
             height: 350px;
             width: 350px;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        .cards .card{
+        .tiles .tile{
             cursor: pointer;
             position: relative;
             perspective: 1000px;
@@ -49,7 +49,7 @@
             height: calc(100% / 4 - 10px);
             width: calc(100% / 4 - 10px);
         }
-        .card.shake{
+        .tile.shake{
             animation: shake 0.35s ease-in-out;
         }
             @keyframes shake {
@@ -69,7 +69,7 @@
                     transform: translateX(8px);
                 }
             }
-        .cards .card .view{
+        .tiles .tile .view{
             width: 100%;
             height: 100%;
             user-select: none;
@@ -81,28 +81,28 @@
             transition: transform 0.25s linear;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-        .card .front-view img{
+        .tile .front img{
             max-width: 17px;
         }
-        .card .back-view{
+        .tile .back{
             transform: rotateY(-180deg);
         }
-        .card .back-view img{
+        .tile .back img{
             max-width: 40px;
         }
-        .card.flipped .front-view{
+        .tile.flipped .front{
             transform: rotateY(180deg);
         }
-        .card.flipped .back-view{
+        .tile.flipped .back{
             transform: rotateY(0);
         }
-        .card.badColor .back-view{ 
+        .tile.badColor .back{ 
             background: #ffcbd1;
         }
-        .card.goodColor .back-view{
+        .tile.goodColor .back{
             background: #cdffd1;
         }
-        .details{
+        .ui{
             width: 100%;
             margin-top: 15px;
             padding: 0 20px;
@@ -112,20 +112,20 @@
             justify-content: space-between;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-        .details p{
+        .ui p{
             font-size: 18px;
             height: 17px;
             padding-right: 18px;
             border-right: 1px solid #ccc;
             color: #000;
         }
-        .details p span{
+        .ui p span{
             margin-left: 8px;
         }
-        .details p b{
+        .ui p b{
             font-weight: 500;
         }
-        .details button{
+        .ui button{
             cursor: pointer;
             font-size: 14px;
             color: #6563ff;
@@ -135,28 +135,28 @@
             border: 2px solid #6563ff;
             transition: 0.3s ease;
         }
-        .details button:hover{
+        .ui button:hover{
             color: #fff;
             background: #6563ff;
         }
         @media screen and (max-width: 700px) {
-            .cards{
+            .tiles{
                 height: 350px;
                 width: 350px;
             }
-            .card .front-view img{
+            .tile .front-view img{
                 max-width: 16px;
             }
-            .card .back-view img{
+            .tile .back-view img{
                 max-width: 40px;
             }
         }
         @media screen and (max-width: 530px) {
-            .cards{
+            .tile{
                 height: 300px;
                 width: 300px;
             }
-            .card .back-view img{
+            .tile .back-view img{
                 max-width: 35px;
             }
             .details{
@@ -181,104 +181,104 @@
 </head>
 <body>
     <div class="wrapper">
-        <ul class="cards">
-        <li class="card">
-            <div class="view front-view">
+        <ul class="tiles">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-1.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-2.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-3.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-4.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-5.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-6.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-5.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-6.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-1.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-2.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-3.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <li class="card">
-            <div class="view front-view">
+        <li class="tile">
+            <div class="view front">
             <img src="images/que_icon.svg" alt="icon">
             </div>
-            <div class="view back-view">
-            <img src="images/img-4.png" alt="card-img">
+            <div class="view back">
+            <img src="images/img-kiwi.png" alt="tile-img">
             </div>
         </li>
-        <div class="details">
+        <div class="ui">
             <p class="time">Time: <span><b>0.00</b>s</span></p>
             <button>Retry</button>
         </div>
@@ -287,7 +287,7 @@
 </body>
 
 <script>
-    const cardList = document.querySelectorAll(".card");
+    const tileList = document.querySelectorAll(".tile");
     const timeLabel = document.querySelector(".time b");
     const retryButton = document.querySelector(".details button");
 
@@ -295,7 +295,7 @@
     let counter = 0;
     let paused = false;
     let started = false;
-    let card1, card2, timer;
+    let tile1, tile2, timer;
     let good = [
         "almond", "apple", "avocado", "banana", "beans", "blueberry",
         "broccoli", "brusprouts", "carrot", "celery", "chickbreast", "cucumber",
@@ -317,15 +317,15 @@
             started = true;
             timer=setInterval(timing, 10);
         }
-        if(clicked != card1 && !paused){
+        if(clicked != tile1 && !paused){
             clicked.classList.add("flipped");
-            if(card1 == "") {
-                card1 = clicked;
+            if(tile1 == "") {
+                tile1 = clicked;
             } else {
-                card2 = clicked;
+                tile2 = clicked;
                 paused = true;
-                let img1 = card1.querySelector(".back-view img").src;
-                let img2 = card2.querySelector(".back-view img").src;
+                let img1 = tile1.querySelector(".back-view img").src;
+                let img2 = tile2.querySelector(".back-view img").src;
                 check(img1, img2);
             }
         }
@@ -333,12 +333,12 @@
 
     function endGame(){
         clearInterval(timer);
-        for (let i=0;i<cardList.length;i++){
-            let card = cardList[i];
-            if (!(card.classList.contains("flipped"))){
-                card.classList.add("flipped");
+        for (let i=0;i<tileList.length;i++){
+            let tile = tileList[i];
+            if (!(tile.classList.contains("flipped"))){
+                tile.classList.add("flipped");
                 setTimeout(() => {
-                    card.classList.add("badColor");
+                    tile.classList.add("badColor");
                 }, 200);
             }
         }
@@ -354,14 +354,14 @@
             }
             if (isBad){
                 setTimeout(() => {
-                    card1.classList.add("badColor");
-                    card2.classList.add("badColor");
+                    tile1.classList.add("badColor");
+                    tile2.classList.add("badColor");
                 }, 200);
                 time+=5;
             } else {
                 setTimeout(() => {
-                    card1.classList.add("goodColor");
-                    card2.classList.add("goodColor");
+                    tile1.classList.add("goodColor");
+                    tile2.classList.add("goodColor");
                 }, 200);
                 counter++;
                 if(counter == 4){
@@ -369,33 +369,33 @@
                     return;
                 }
             }
-            card1.removeEventListener("click", flip);
-            card2.removeEventListener("click", flip);
+            tile1.removeEventListener("click", flip);
+            tile2.removeEventListener("click", flip);
             setTimeout(() => {
-                card1 = card2 = "";
+                tile1 = tile2 = "";
                 paused = false;
             }, 200);
             return;
         }
-        card1.classList.add("shake");
-        card2.classList.add("shake");
+        tile1.classList.add("shake");
+        tile2.classList.add("shake");
         setTimeout(() => {
-            card1.classList.remove("shake", "flipped");
-            card2.classList.remove("shake");
-            card1 = card2;
-            card2 = "";
+            tile1.classList.remove("shake", "flipped");
+            tile2.classList.remove("shake");
+            tile1 = tile2;
+            tile2 = "";
             paused = false;
         }, 200);
     }
 
     function setup(){
-        for (let i=0;i<cardList.length;i++){
-            let card = cardList[i];
-            card.style.display="inline";
+        for (let i=0;i<tileList.length;i++){
+            let tile = tileList[i];
+            tile.style.display="inline";
         }
         time = 0;
         counter = 0;
-        card1 = card2 = "";
+        tile1 = tile2 = "";
         clearInterval(timer);
         timeLabel.innerText = time.toFixed(2);
         paused = false;
@@ -403,17 +403,17 @@
 
         good.sort((a, b) => 0.5 - Math.random());
         bad.sort((a, b) => 0.5 - Math.random());
-        let cardSet = good.slice(0,4).concat(bad.slice(0,2));
-        cardSet = cardSet.concat(cardSet);
-        cardSet.sort((a, b) => 0.5 - Math.random());
-        for (let i=0;i<cardSet.length;i++){
-            cardList[i].classList.remove("flipped");
-            cardList[i].classList.remove("goodColor");
-            cardList[i].classList.remove("badColor");
+        let tileSet = good.slice(0,4).concat(bad.slice(0,2));
+        tileSet = tileSet.concat(tileSet);
+        tileSet.sort((a, b) => 0.5 - Math.random());
+        for (let i=0;i<tileSet.length;i++){
+            tileList[i].classList.remove("flipped");
+            tileList[i].classList.remove("goodColor");
+            tileList[i].classList.remove("badColor");
             setTimeout(() => {
-                cardList[i].querySelector(".back-view img").src = `images/img-${cardSet[i]}.png`;
+                tileList[i].querySelector(".back-view img").src = `images/img-${tileSet[i]}.png`;
             }, 500);
-            cardList[i].addEventListener("click", flip);
+            tileList[i].addEventListener("click", flip);
         }
     }
 
