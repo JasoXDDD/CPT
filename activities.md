@@ -6,8 +6,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         *{
             margin: 0;
-            padding: 0;
             box-sizing: border-box;
+            padding: 0;
             font-family: 'Poppins', sans-serif;
         }
         p{
@@ -15,38 +15,38 @@
         }
         body{
             display: flex;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            align-items: center;
             background: #6563ff;
+            min-height: 100vh;
         }
         ::selection{
-            color: #fff;
             background: #6563ff;
+            color: #fff;
         }
         .wrapper{
             padding: 25px;
-            background: #f8f8f8;
             border-radius: 10px;
+            background: #f8f8f8;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .tiles, .tile, .view, .details, p{
-            display: flex;
             align-items: center;
+            display: flex;
             justify-content: center;
         }
         .tiles{
             height: 350px;
-            width: 350px;
             flex-wrap: wrap;
+            width: 350px;
             justify-content: space-between;
         }
         .tiles .tile{
             cursor: pointer;
-            position: relative;
             perspective: 1000px;
-            transform-style: preserve-3d;
+            position: relative;
             height: calc(100% / 4 - 10px);
+            transform-style: preserve-3d;
             width: calc(100% / 4 - 10px);
         }
         .tile.shake{
@@ -71,15 +71,15 @@
             }
         .tiles .tile .view{
             width: 100%;
-            height: 100%;
             user-select: none;
+            height: 100%;
             pointer-events: none;
-            position: absolute;
             background: #fff;
-            border-radius: 7px;
+            position: absolute;
             backface-visibility: hidden;
-            transition: transform 0.25s linear;
+            border-radius: 7px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.25s linear;
         }
         .tile .front img{
             max-width: 17px;
@@ -104,20 +104,20 @@
         }
         .ui{
             width: 100%;
-            margin-top: 15px;
             padding: 0 20px;
+            margin-top: 15px;
             border-radius: 7px;
-            background: #fff;
             height: calc(100% / 4 - 30px);
-            justify-content: space-between;
+            background: #fff;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            justify-content: space-between;
         }
         .ui p{
             font-size: 18px;
-            height: 17px;
             padding-right: 18px;
-            border-right: 1px solid #ccc;
+            height: 17px;
             color: #000;
+            border-right: 1px solid #ccc;
         }
         .ui p span{
             margin-left: 8px;
@@ -127,22 +127,22 @@
         }
         .ui button{
             cursor: pointer;
-            font-size: 14px;
             color: #6563ff;
+            font-size: 14px;
             border-radius: 4px;
-            padding: 4px 11px;
-            background: #fff;
-            border: 2px solid #6563ff;
             transition: 0.3s ease;
+            background: #fff;
+            padding: 4px 11px;
+            border: 2px solid #6563ff;
         }
         .ui button:hover{
-            color: #fff;
             background: #6563ff;
+            color: #fff;
         }
         @media screen and (max-width: 700px) {
             .tiles{
-                height: 350px;
                 width: 350px;
+                height: 350px;
             }
             .tile .front-view img{
                 max-width: 16px;
@@ -153,28 +153,28 @@
         }
         @media screen and (max-width: 530px) {
             .tile{
-                height: 300px;
                 width: 300px;
+                height: 300px;
             }
             .tile .back-view img{
                 max-width: 35px;
             }
             .details{
-                margin-top: 10px;
                 padding: 0 15px;
+                margin-top: 10px;
                 height: calc(100% / 4 - 20px);
             }
             .details p{
                 height: 15px;
-                font-size: 17px;
                 padding-right: 13px;
+                font-size: 17px;
             }
             .details button{
                 font-size: 13px;
-                padding: 5px 10px;
                 border: none;
-                color: #fff;
+                padding: 5px 10px;
                 background: #6563ff;
+                color: #fff;
             }
         }
     </style>
