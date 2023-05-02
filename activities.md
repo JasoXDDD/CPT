@@ -6,8 +6,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         *{
             margin: 0;
-            box-sizing: border-box;
             padding: 0;
+            box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
         p{
@@ -15,38 +15,38 @@
         }
         body{
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: #6563ff;
+            justify-content: center;
             min-height: 100vh;
+            background: #6563ff;
         }
         ::selection{
-            background: #6563ff;
             color: #fff;
+            background: #6563ff;
         }
         .wrapper{
             padding: 25px;
-            border-radius: 10px;
             background: #f8f8f8;
+            border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .tiles, .tile, .view, .details, p{
-            align-items: center;
             display: flex;
+            align-items: center;
             justify-content: center;
         }
         .tiles{
             height: 350px;
-            flex-wrap: wrap;
             width: 350px;
+            flex-wrap: wrap;
             justify-content: space-between;
         }
         .tiles .tile{
             cursor: pointer;
-            perspective: 1000px;
             position: relative;
-            height: calc(100% / 4 - 10px);
+            perspective: 1000px;
             transform-style: preserve-3d;
+            height: calc(100% / 4 - 10px);
             width: calc(100% / 4 - 10px);
         }
         .tile.shake{
@@ -71,15 +71,15 @@
             }
         .tiles .tile .view{
             width: 100%;
-            user-select: none;
             height: 100%;
+            user-select: none;
             pointer-events: none;
-            background: #fff;
             position: absolute;
-            backface-visibility: hidden;
+            background: #fff;
             border-radius: 7px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            backface-visibility: hidden;
             transition: transform 0.25s linear;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         .tile .front img{
             max-width: 17px;
@@ -104,20 +104,20 @@
         }
         .ui{
             width: 100%;
-            padding: 0 20px;
             margin-top: 15px;
+            padding: 0 20px;
             border-radius: 7px;
-            height: calc(100% / 4 - 30px);
             background: #fff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            height: calc(100% / 4 - 30px);
             justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         .ui p{
             font-size: 18px;
-            padding-right: 18px;
             height: 17px;
-            color: #000;
+            padding-right: 18px;
             border-right: 1px solid #ccc;
+            color: #000;
         }
         .ui p span{
             margin-left: 8px;
@@ -127,17 +127,17 @@
         }
         .ui button{
             cursor: pointer;
-            color: #6563ff;
             font-size: 14px;
+            color: #6563ff;
             border-radius: 4px;
-            transition: 0.3s ease;
-            background: #fff;
             padding: 4px 11px;
+            background: #fff;
             border: 2px solid #6563ff;
+            transition: 0.3s ease;
         }
         .ui button:hover{
-            background: #6563ff;
             color: #fff;
+            background: #6563ff;
         }
         @media screen and (max-width: 700px) {
             .tiles{
